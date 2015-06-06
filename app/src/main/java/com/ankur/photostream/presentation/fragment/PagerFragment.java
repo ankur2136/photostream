@@ -3,6 +3,9 @@ package com.ankur.photostream.presentation.fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -10,6 +13,8 @@ import com.ankur.photostream.R;
 import com.ankur.photostream.presentation.adapter.PagerAdapter;
 import com.ankur.photostream.presentation.view.PagerSlidingTabStrip;
 import com.ankur.photostream.utils.LogUtils;
+import com.ankur.photostream.utils.NavigationUtils;
+import com.facebook.login.LoginManager;
 
 public class PagerFragment extends BaseFragment {
     private ViewPager            mViewPager;
@@ -84,6 +89,23 @@ public class PagerFragment extends BaseFragment {
                 LogUtils.debugLog(LOG_TAG, "onPageScrollStateChanged:");
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.clear();
+        getmActivity().getMenuInflater().inflate(R.menu.menu_home, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.action_logout:
+            LoginManager.getInstance().logOut();
+            NavigationUtils.removeFragment(getmActivity().getSupportFragmentManager(), this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public static PagerFragment newInstance() {

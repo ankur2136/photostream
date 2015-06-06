@@ -3,17 +3,19 @@ package com.ankur.photostream.presentation.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 
 import com.ankur.photostream.R;
 import com.ankur.photostream.presentation.fragment.PagerFragment;
 import com.ankur.photostream.utils.LogUtils;
 import com.ankur.photostream.utils.NavigationUtils;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -39,35 +41,25 @@ public class HomeActivity extends BaseActivity implements FacebookCallback<Login
         mLoginButton = (LoginButton) findViewById(R.id.b_login);
         mLoginButton.setReadPermissions(mPermissionNeeds);
         mLoginButton.registerCallback(mCallbackManager, this);
+        onAccessTokenChanged(AccessToken.getCurrentAccessToken(), AccessToken.getCurrentAccessToken());
+        new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
+                onAccessTokenChanged(oldAccessToken, newAccessToken);
+            }
+        };
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+//        getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        // noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        // Logs 'install' and 'app activate' App Events.
         AppEventsLogger.activateApp(this);
     }
 
@@ -75,7 +67,6 @@ public class HomeActivity extends BaseActivity implements FacebookCallback<Login
     protected void onPause() {
         super.onPause();
 
-        // Logs 'app deactivate' App Event.
         AppEventsLogger.deactivateApp(this);
     }
 
@@ -88,8 +79,6 @@ public class HomeActivity extends BaseActivity implements FacebookCallback<Login
     @Override
     public void onSuccess(LoginResult loginResult) {
         LogUtils.debugLog(LOG_TAG, "Login Successful " + loginResult.getAccessToken().toString());
-        NavigationUtils.startFragment(this.getSupportFragmentManager(), R.id.fl_fragment_container,
-                PagerFragment.newInstance(), true, NavigationUtils.NO_ANIMATION);
     }
 
     @Override
@@ -102,4 +91,16 @@ public class HomeActivity extends BaseActivity implements FacebookCallback<Login
         LogUtils.errorLog(LOG_TAG, "Login failed " + e.toString());
     }
 
+    private void onAccessTokenChanged(AccessToken oldAccessToken, AccessToken newAccessToken) {
+        if (newAccessToken != null) {
+            navigateToFragment();
+        } else {
+            getFragmentManager().popBackStack();
+        }
+    }
+
+    private void navigateToFragment() {
+        NavigationUtils.startFragment(this.getSupportFragmentManager(), R.id.fl_fragment_container,
+                PagerFragment.newInstance(), true, NavigationUtils.NO_ANIMATION);
+    }
 }

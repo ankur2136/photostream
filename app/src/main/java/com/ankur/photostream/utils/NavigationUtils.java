@@ -61,6 +61,15 @@ public class NavigationUtils {
 
     }
 
+    public static boolean removeFragment(FragmentManager fragmentManager, Fragment frag) {
+        if (frag != null) {
+            fragmentManager.popBackStackImmediate();
+            fragmentManager.beginTransaction().remove(frag).commit();
+            return true;
+        }
+        return false;
+    }
+
     private static void performFragmentTransaction(FragmentManager fragmentManager, int container, Fragment fragment,
             String tag, boolean addToBackStack, boolean allowStateLoss, int customAnimation) {
 

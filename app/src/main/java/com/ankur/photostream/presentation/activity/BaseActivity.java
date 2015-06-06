@@ -16,7 +16,7 @@ public abstract class BaseActivity extends ActionBarActivity {
         super.setContentView(layoutResID);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setTitle("PhotoStream");
     }
 
     @Override
