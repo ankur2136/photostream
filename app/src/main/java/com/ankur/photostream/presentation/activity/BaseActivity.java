@@ -33,14 +33,6 @@ public abstract class BaseActivity extends ActionBarActivity {
         super.onActivityResult(arg0, arg1, arg2);
     }
 
-    protected void backPress() {
-        try {
-            super.onBackPressed();
-        } catch (IllegalStateException ex) {
-            LogUtils.errorLog(LOG_TAG, "Cannot transact after activity onPause", ex);
-        }
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ECLAIR
@@ -55,14 +47,10 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        // This will be called either automatically for you on 2.0
-        // or later, or by the code above on earlier versions of the
-        // platform.
-        if (this instanceof HomeActivity) {
-            this.onKeyUp(KeyEvent.KEYCODE_BACK, null);
-            this.onBackPressed();
-        } else {
-            backPress();
+        try {
+            super.onBackPressed();
+        } catch (IllegalStateException ex) {
+            LogUtils.errorLog(LOG_TAG, "Cannot transact after activity onPause", ex);
         }
     }
 
@@ -75,5 +63,4 @@ public abstract class BaseActivity extends ActionBarActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
