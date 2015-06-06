@@ -6,7 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ankur.photostream.R;
+import com.ankur.photostream.presentation.fragment.PagerFragment;
 import com.ankur.photostream.utils.LogUtils;
+import com.ankur.photostream.utils.NavigationUtils;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -86,6 +88,8 @@ public class HomeActivity extends BaseActivity implements FacebookCallback<Login
     @Override
     public void onSuccess(LoginResult loginResult) {
         LogUtils.debugLog(LOG_TAG, "Login Successful " + loginResult.getAccessToken().toString());
+        NavigationUtils.startFragment(this.getSupportFragmentManager(), R.id.fl_fragment_container,
+                PagerFragment.newInstance(), true, NavigationUtils.NO_ANIMATION);
     }
 
     @Override
