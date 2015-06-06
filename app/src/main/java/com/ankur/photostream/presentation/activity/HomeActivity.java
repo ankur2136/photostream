@@ -15,7 +15,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -101,6 +100,6 @@ public class HomeActivity extends BaseActivity implements FacebookCallback<Login
 
     private void navigateToFragment() {
         NavigationUtils.startFragment(this.getSupportFragmentManager(), R.id.fl_fragment_container,
-                PagerFragment.newInstance(), true, NavigationUtils.NO_ANIMATION);
+                PagerFragment.newInstance(), false, NavigationUtils.NO_ANIMATION);
     }
 }
