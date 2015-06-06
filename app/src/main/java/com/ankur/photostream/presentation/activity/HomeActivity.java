@@ -1,14 +1,12 @@
-package com.ankur.photostream;
+package com.ankur.photostream.presentation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.ankur.photostream.R;
 import com.ankur.photostream.utils.LogUtils;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -20,7 +18,7 @@ import com.facebook.login.widget.LoginButton;
 import java.util.Arrays;
 import java.util.List;
 
-public class HomeActivity extends FragmentActivity implements FacebookCallback<LoginResult> {
+public class HomeActivity extends BaseActivity implements FacebookCallback<LoginResult> {
 
     private static final String LOG_TAG          = "HOME_ACTIVITY";
 
