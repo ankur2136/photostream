@@ -30,6 +30,7 @@ public class ApiUtils extends RequestUtils {
         request.setRetryPolicy(new DefaultRetryPolicy(getTimeout(context), 0, 0));
         VolleyLib.getRequestQueue().add(request);
         try {
+            //noinspection unchecked
             t = (T) getFuture(future, context, timeout);
             listener.onResponse(t);
         } catch (Exception ex) {

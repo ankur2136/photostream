@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.ankur.photostream.R;
+import com.ankur.photostream.common.QueryParams;
 import com.ankur.photostream.domain.dto.PhotoItem;
 import com.ankur.photostream.domain.usecase.UseCaseFactory;
 import com.ankur.photostream.presentation.adapter.PhotoListAdapter;
@@ -38,11 +39,11 @@ public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem
 
     private ListView                       mListView;
 
-    private PhotoItem                      mPhotoItem;
-
     private RelativeLayout                 mProgressView;
 
     private InteractionListener<PhotoItem> mListener;
+
+    private static String                  mQuery;
 
     /**
      * Should not be called from outside this fragment.
@@ -50,8 +51,9 @@ public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem
     public PhotoListFragment() {
     }
 
-    public static Bundle getPhotoItemBundle(PhotoItem photoItem) {
+    public static Bundle getPhotoItemBundle(String query) {
         Bundle bundle = new Bundle();
+        mQuery = query;
         return bundle;
     }
 
@@ -122,7 +124,9 @@ public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem
     }
 
     private void loadMediaList() {
-            presenter.init(null);
+        QueryParams queryParams = QueryParams.getNewInstance();
+        queryParams.setText(mQuery);
+        presenter.init(queryParams);
     }
 
     @Override

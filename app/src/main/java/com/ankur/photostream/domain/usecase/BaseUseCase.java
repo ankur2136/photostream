@@ -5,6 +5,7 @@ import com.ankur.photostream.executor.ThreadExecutor;
 
 import java.util.concurrent.Future;
 
+@SuppressWarnings("unchecked")
 public class BaseUseCase {
     protected boolean mAsync = true;
     protected boolean mApplyUserState;

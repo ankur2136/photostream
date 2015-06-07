@@ -51,14 +51,6 @@ public class LogUtils {
         getLogger().error(tag, message, ex);
     }
 
-    public static boolean isDebugLogEnabled() {
-        return true;
-    }
-
-    public static void setLogger(Logger logger) {
-        sLogger = logger;
-    }
-
     private static Logger getLogger() {
         if (sLogger == null) {
             return DEFAULT_LOGGER;
@@ -217,16 +209,6 @@ public class LogUtils {
         }
         return String.format(Locale.US, "[%d/%s] %s %s: %s", Thread.currentThread().getId(), Thread.currentThread()
                 .getName(), LOG_PREFIX, tag, caller);
-    }
-
-    /**
-     * Logs error messages to Crashlytics. Ignores rest of the messages.
-     */
-    public static class ProductionLogger extends NoOpLogger {
-        @Override
-        public void error(String tag, String message, Throwable exception) {
-
-        }
     }
 
 }

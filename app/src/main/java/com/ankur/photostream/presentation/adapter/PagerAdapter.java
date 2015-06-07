@@ -18,11 +18,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
         case 0:
-            return PhotoListFragment.newInstance(null);
+            return PhotoListFragment.newInstance(PhotoListFragment.getPhotoItemBundle("photo"));
         case 1:
-            return PhotoListFragment.newInstance(null);
+            return PhotoListFragment.newInstance(PhotoListFragment.getPhotoItemBundle("album"));
         case 2:
-            return PhotoListFragment.newInstance(null);
+            return PhotoListFragment.newInstance(PhotoListFragment.getPhotoItemBundle("video"));
         }
         return null;
     }
@@ -38,9 +38,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         case 0:
             return "Photos";
         case 1:
-            return "Videos";
-        case 2:
             return "Albums";
+        case 2:
+            return "Videos";
         }
         return null;
     }

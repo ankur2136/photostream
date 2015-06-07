@@ -14,4 +14,11 @@ public class CloudStore implements ItemDataSource<PhotoItem> {
         results = RequestUtils.getPhotos(MyApplication.getMyApplicationContext());
         return results;
     }
+
+    @Override
+    public List<PhotoItem> getAlbums() {
+        List<PhotoItem> results;
+        results = RequestUtils.getAlbums(MyApplication.getMyApplicationContext());
+        return results;
+    }
 }

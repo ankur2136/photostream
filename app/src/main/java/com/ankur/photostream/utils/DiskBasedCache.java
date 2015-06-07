@@ -134,6 +134,7 @@ public class DiskBasedCache implements Cache {
                 try {
                     cis.close();
                 } catch (IOException ioe) {
+                    //noinspection ReturnInsideFinallyBlock
                     return null;
                 }
             }

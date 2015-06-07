@@ -15,12 +15,23 @@ public class ApiConstants {
     }
 
     public static String getPhotoUrl() {
-        return getPhotoUrl(1, 5);
+        return getPhotoUrl(5);
     }
 
-    private static String getPhotoUrl(int page, int pageSize) {
+    private static String getPhotoUrl(int pageSize) {
         AccessToken.getCurrentAccessToken().getToken();
-        return "https://graph.facebook.com/v2.3/me/photos?fields=id,from,images&limit=2&access_token="
+        return "https://graph.facebook.com/v2.3/me/photos?fields=id,from,images&limit=" + pageSize + "&access_token="
                 + AccessToken.getCurrentAccessToken().getToken();
     }
+
+    public static String getAlbumUrl() {
+        return getAlbumUrl(5);
+    }
+
+    private static String getAlbumUrl(int pageSize) {
+        AccessToken.getCurrentAccessToken().getToken();
+        return "https://graph.facebook.com/v2.3/me/albums?fields=id,from,images&limit=" + pageSize + "&access_token="
+                + AccessToken.getCurrentAccessToken().getToken();
+    }
+
 }

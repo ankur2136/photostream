@@ -16,7 +16,7 @@ public class GetPhotoItemsUseCase extends BaseUseCase implements GetItemsUseCase
 
     private final ContentRepository mContentRepository;
 
-    private Integer mId;
+    private String                  mQuery;
 
     public GetPhotoItemsUseCase(ContentRepository contentRepository, ThreadExecutor executor) {
         mContentRepository = contentRepository;
@@ -26,7 +26,7 @@ public class GetPhotoItemsUseCase extends BaseUseCase implements GetItemsUseCase
     @Override
     public void getItem(QueryParams queryParams, PostExecutionThread postExecutionThread, Callback callback,
             boolean async, boolean applyUserState) {
-//        mId = queryParams.getId();
+        mQuery = queryParams.getTEXT();
         mCallback = callback;
         mPostExecutionThread = postExecutionThread;
         mAsync = async;
@@ -37,8 +37,16 @@ public class GetPhotoItemsUseCase extends BaseUseCase implements GetItemsUseCase
     @Override
     public void run() {
         try {
-            List<PhotoItem> result = mContentRepository.getPhotos();
-            notifyOnSuccess(result);
+            if (mQuery.equals("photo")) {
+                @SuppressWarnings("unchecked")
+                List<PhotoItem> result = mContentRepository.getPhotos();
+                notifyOnSuccess(result);
+            } else if (mQuery.equals("album")) {
+                @SuppressWarnings("unchecked")
+                List<PhotoItem> result = mContentRepository.getAlbums();
+                notifyOnSuccess(result);
+            }
+
         } catch (Exception e) {
             LogUtils.errorLog(LOG_TAG, "Exception on background thread... ", e);
             notifyOnError(e);

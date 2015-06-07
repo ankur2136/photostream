@@ -53,17 +53,13 @@ public class ItemPresenter<I> extends Presenter<CollectionView<I>> {
 
     @Override
     public void resume() {
-        if (LogUtils.isDebugLogEnabled()) {
-            LogUtils.debugLog(LOG_TAG, this.getClass().getSimpleName() + ": resume()");
-        }
+        LogUtils.debugLog(LOG_TAG, this.getClass().getSimpleName() + ": resume()");
         isPaused = false;
     }
 
     @Override
     public void pause() {
-        if (LogUtils.isDebugLogEnabled()) {
-            LogUtils.debugLog(LOG_TAG, this.getClass().getSimpleName() + ": pause()");
-        }
+        LogUtils.debugLog(LOG_TAG, this.getClass().getSimpleName() + ": pause()");
         isPaused = true;
     }
 

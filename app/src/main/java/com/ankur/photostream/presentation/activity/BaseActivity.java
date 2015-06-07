@@ -9,7 +9,7 @@ import com.ankur.photostream.utils.LogUtils;
 
 public abstract class BaseActivity extends ActionBarActivity {
 
-    private static final String LOG_TAG   = "BASE_ACTIVITY";
+    private static final String LOG_TAG = "BASE_ACTIVITY";
 
     @Override
     public void setContentView(int layoutResID) {
@@ -21,15 +21,13 @@ public abstract class BaseActivity extends ActionBarActivity {
 
     @Override
     public void onStart() {
-        if (LogUtils.isDebugLogEnabled())
-            LogUtils.debugLog(LOG_TAG, "[LIFECYCLE] onStart(): " + this.getClass().getSimpleName());
+        LogUtils.debugLog(LOG_TAG, "[LIFECYCLE] onStart(): " + this.getClass().getSimpleName());
         super.onStart();
     }
 
     @Override
     protected void onActivityResult(int arg0, int arg1, Intent arg2) {
-        if (LogUtils.isDebugLogEnabled())
-            LogUtils.debugLog(LOG_TAG, "[LIFECYCLE] onActivityResult(): " + this.getClass().getSimpleName());
+        LogUtils.debugLog(LOG_TAG, "[LIFECYCLE] onActivityResult(): " + this.getClass().getSimpleName());
         super.onActivityResult(arg0, arg1, arg2);
     }
 
