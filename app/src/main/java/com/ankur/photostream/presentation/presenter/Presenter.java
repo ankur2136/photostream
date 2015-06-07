@@ -21,7 +21,9 @@ public class Presenter<V extends BaseView> implements BasePresenter<V> {
      * to check if the view is attached to avoid NullPointerExceptions
      */
     protected V getView() {
-        return viewRef.get();
+        if (viewRef != null)
+            return viewRef.get();
+        return null;
     }
 
     protected void resume() {

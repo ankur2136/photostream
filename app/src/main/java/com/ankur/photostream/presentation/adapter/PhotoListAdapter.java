@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.ankur.photostream.R;
 import com.ankur.photostream.domain.dto.PhotoItem;
+import com.ankur.photostream.presentation.view.component.NetworkImageViewPlus;
+import com.ankur.photostream.utils.VolleyLib;
 
 public class PhotoListAdapter extends BaseAdapter {
 
@@ -107,13 +109,14 @@ public class PhotoListAdapter extends BaseAdapter {
 
     public static class ViewHolder {
 
-        ImageView mPhoto;
+        NetworkImageView mPhoto;
 
         public void instantiate(View view) {
-            mPhoto = (ImageView) view.findViewById(R.id.open_graph);
+            mPhoto = (NetworkImageView) view.findViewById(R.id.iv_image);
         }
 
         public void bindViews(PhotoItem item) {
+            mPhoto.setImageUrl(item.mImages.get(0).source, VolleyLib.getImageLoader());
         }
     }
 

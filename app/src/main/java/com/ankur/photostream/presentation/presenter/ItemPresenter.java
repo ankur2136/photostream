@@ -90,23 +90,43 @@ public class ItemPresenter<I> extends Presenter<CollectionView<I>> {
     }
 
     private void showViewLoading() {
-        getView().showLoading();
+        try {
+            getView().showLoading();
+        } catch (Exception e) {
+
+        }
     }
 
     private void hideViewLoading() {
-        getView().hideLoading();
+        try {
+            getView().hideLoading();
+        } catch (Exception e) {
+
+        }
     }
 
     private void showViewRetry() {
-        getView().showRetry();
+        try {
+            getView().showRetry();
+        } catch (Exception e) {
+
+        }
     }
 
     private void hideViewRetry() {
-        getView().hideRetry();
+        try {
+            getView().hideRetry();
+        } catch (Exception e) {
+
+        }
     }
 
     public void onItemClicked(I item) {
-        getView().viewItem(item);
+        try {
+            getView().viewItem(item);
+        } catch (Exception e) {
+
+        }
     }
 
     private void showErrorMessage(Exception ex) {

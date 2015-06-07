@@ -13,4 +13,18 @@
         <item name="android:visibility">visible</item>
     </style>
 
+    <!-- Custom attributes for ImageViewPlus -->
+    <declare-styleable name="NetworkImageViewPlus">
+        <attr name="imageType" format="enum">
+            <enum name="banner" value="0"/>
+            <enum name="regular" value="1"/>
+        </attr>
+        <attr name="imageSize" format="enum">
+            <enum name="mini_player_thumbnail" value="0"/>
+            <enum name="grid_item" value="1"/>
+            <enum name="list_item_thumbnail" value="2"/>
+            <enum name="player" value="3"/>
+        </attr>
+    </declare-styleable>
+
 </resources>

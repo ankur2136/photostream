@@ -17,14 +17,14 @@ public class PhotoItem implements Serializable, ParsingObject {
     public List<Images> mImages;
 
     public class fromField {
-        String id;
-        String name;
+        public String id;
+        public String name;
     }
 
     public class Images {
-        int    height;
-        int    width;
-        String source;
+        public int    height;
+        public int    width;
+        public String source;
     }
 
     @Override
