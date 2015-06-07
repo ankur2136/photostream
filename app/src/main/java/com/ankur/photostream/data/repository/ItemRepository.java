@@ -1,0 +1,20 @@
+package com.ankur.photostream.data.repository;
+
+import com.ankur.photostream.data.datasource.CloudStore;
+import com.ankur.photostream.data.datasource.ItemDataSource;
+import com.ankur.photostream.domain.dto.PhotoItem;
+
+import java.util.List;
+
+public class ItemRepository implements ContentRepository<PhotoItem> {
+
+    private static final String LOG_TAG = "ITEM_REPOSITORY";
+
+    ItemDataSource              mCloud  = new CloudStore();
+
+    @Override
+    public List<PhotoItem> getPhotos() {
+        List<PhotoItem> result = mCloud.getPhotos();
+        return result;
+    }
+}

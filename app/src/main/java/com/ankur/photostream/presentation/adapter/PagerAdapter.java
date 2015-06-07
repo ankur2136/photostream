@@ -4,9 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.ankur.photostream.presentation.fragment.PhotoListFragment;
+
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
-    private static final int  PAGES = 2;
+    private static final int PAGES = 3;
 
     public PagerAdapter(FragmentManager fm) {
         super(fm);
@@ -16,9 +18,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
         case 0:
-            return new Fragment();
+            return PhotoListFragment.newInstance(null);
         case 1:
-            return new Fragment();
+            return PhotoListFragment.newInstance(null);
+        case 2:
+            return PhotoListFragment.newInstance(null);
         }
         return null;
     }
@@ -35,6 +39,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             return "Photos";
         case 1:
             return "Videos";
+        case 2:
+            return "Albums";
         }
         return null;
     }

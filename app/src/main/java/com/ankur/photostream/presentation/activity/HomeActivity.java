@@ -6,6 +6,7 @@ import android.view.Menu;
 
 import com.ankur.photostream.R;
 import com.ankur.photostream.presentation.fragment.PagerFragment;
+import com.ankur.photostream.presentation.view.BaseView;
 import com.ankur.photostream.utils.LogUtils;
 import com.ankur.photostream.utils.NavigationUtils;
 import com.facebook.AccessToken;
@@ -21,7 +22,7 @@ import com.facebook.login.widget.LoginButton;
 import java.util.Arrays;
 import java.util.List;
 
-public class HomeActivity extends BaseActivity implements FacebookCallback<LoginResult> {
+public class HomeActivity extends BaseActivity implements FacebookCallback<LoginResult>, BaseView.InteractionListener<Object> {
 
     private static final String LOG_TAG          = "HOME_ACTIVITY";
 
@@ -101,5 +102,10 @@ public class HomeActivity extends BaseActivity implements FacebookCallback<Login
     private void navigateToFragment() {
         NavigationUtils.startFragment(this.getSupportFragmentManager(), R.id.fl_fragment_container,
                 PagerFragment.newInstance(), false, NavigationUtils.NO_ANIMATION);
+    }
+
+    @Override
+    public void onItemClick(Object item) {
+
     }
 }
