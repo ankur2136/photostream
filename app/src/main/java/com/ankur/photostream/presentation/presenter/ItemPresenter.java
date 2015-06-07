@@ -93,7 +93,7 @@ public class ItemPresenter<I> extends Presenter<CollectionView<I>> {
         try {
             getView().showLoading();
         } catch (Exception e) {
-
+            // do nothing
         }
     }
 
@@ -101,7 +101,7 @@ public class ItemPresenter<I> extends Presenter<CollectionView<I>> {
         try {
             getView().hideLoading();
         } catch (Exception e) {
-
+            // do nothing
         }
     }
 
@@ -109,7 +109,7 @@ public class ItemPresenter<I> extends Presenter<CollectionView<I>> {
         try {
             getView().showRetry();
         } catch (Exception e) {
-
+            // do nothing
         }
     }
 
@@ -117,7 +117,7 @@ public class ItemPresenter<I> extends Presenter<CollectionView<I>> {
         try {
             getView().hideRetry();
         } catch (Exception e) {
-
+            // do nothing
         }
     }
 
@@ -125,7 +125,7 @@ public class ItemPresenter<I> extends Presenter<CollectionView<I>> {
         try {
             getView().viewItem(item);
         } catch (Exception e) {
-
+            // do nothing
         }
     }
 

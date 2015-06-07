@@ -13,7 +13,6 @@ import android.widget.BaseAdapter;
 import com.android.volley.toolbox.NetworkImageView;
 import com.ankur.photostream.R;
 import com.ankur.photostream.domain.dto.PhotoItem;
-import com.ankur.photostream.presentation.view.component.NetworkImageViewPlus;
 import com.ankur.photostream.utils.VolleyLib;
 
 public class PhotoListAdapter extends BaseAdapter {
