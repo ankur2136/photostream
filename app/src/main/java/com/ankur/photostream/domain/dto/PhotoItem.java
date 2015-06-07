@@ -15,6 +15,7 @@ public class PhotoItem implements Serializable, ParsingObject {
     public String       mId;
     public fromField    mFrom;
     public List<Images> mImages;
+    public String       mCoverPhoto;
 
     public class fromField {
         public String id;
@@ -41,7 +42,7 @@ public class PhotoItem implements Serializable, ParsingObject {
             mFrom.name = from.getString(ApiConstants.Photo.NAME);
         }
 
-        JSONArray images = obj.getJSONArray(ApiConstants.Photo.IMAGES);
+        JSONArray images = obj.optJSONArray(ApiConstants.Photo.IMAGES);
         mImages = new ArrayList<>();
         if (images != null) {
             for (int i = 0; i < images.length(); i++) {
@@ -53,6 +54,7 @@ public class PhotoItem implements Serializable, ParsingObject {
             }
         }
 
+        mCoverPhoto = obj.optString(ApiConstants.Photo.COVER_PHOTO);
         return this;
     }
 }

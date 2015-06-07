@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.ankur.photostream.R;
+import com.ankur.photostream.common.ApiConstants;
 import com.ankur.photostream.domain.dto.PhotoItem;
 import com.ankur.photostream.utils.VolleyLib;
 
@@ -115,7 +116,11 @@ public class PhotoListAdapter extends BaseAdapter {
         }
 
         public void bindViews(PhotoItem item) {
-            mPhoto.setImageUrl(item.mImages.get(0).source, VolleyLib.getImageLoader());
+            if (item.mCoverPhoto != null && !item.mCoverPhoto.equals("")) {
+                mPhoto.setImageUrl(ApiConstants.getCoverPhotoUrl(item.mId), VolleyLib.getImageLoader());
+            } else {
+                mPhoto.setImageUrl(item.mImages.get(0).source, VolleyLib.getImageLoader());
+            }
         }
     }
 
