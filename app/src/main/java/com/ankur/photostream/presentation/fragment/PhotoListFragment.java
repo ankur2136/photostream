@@ -102,6 +102,7 @@ public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menu.clear();
+        menuInflater.inflate(R.menu.menu_home, menu);
     }
 
     @Override
@@ -167,7 +168,6 @@ public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem
     private void findViews(View view) {
         mListView = (ListView) view.findViewById(R.id.lv_list_view);
         mProgressView = (RelativeLayout) view.findViewById(R.id.rl_progress);
-        getmActivity().getSupportActionBar().hide();
     }
 
     private void bindViews() {
