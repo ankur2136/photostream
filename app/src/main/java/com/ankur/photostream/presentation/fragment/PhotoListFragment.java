@@ -43,7 +43,7 @@ public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem
 
     private InteractionListener<PhotoItem> mListener;
 
-    private static String                  mQuery;
+    private String                         mQuery;
 
     private String                         mFragmentTagSuffix = "";
 
@@ -62,8 +62,8 @@ public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem
     public static PhotoListFragment newInstance(Bundle bundle) {
         PhotoListFragment fragment = new PhotoListFragment();
         if (bundle != null) {
-            mQuery = bundle.getString("query", "photo");
-            fragment.setFragmentTagSuffix(mQuery);
+            fragment.mQuery = bundle.getString("query", "photo");
+            fragment.setFragmentTagSuffix(fragment.mQuery);
             fragment.setArguments(bundle);
         }
         return fragment;

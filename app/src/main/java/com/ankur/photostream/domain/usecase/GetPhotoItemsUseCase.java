@@ -47,7 +47,7 @@ public class GetPhotoItemsUseCase extends BaseUseCase implements GetItemsUseCase
                 notifyOnSuccess(result);
             } else if (mQuery.equals("video")) {
                 @SuppressWarnings("unchecked")
-                List<PhotoItem> result = mContentRepository.getAlbums();
+                List<PhotoItem> result = mContentRepository.getVideos();
                 notifyOnSuccess(result);
             }
 
