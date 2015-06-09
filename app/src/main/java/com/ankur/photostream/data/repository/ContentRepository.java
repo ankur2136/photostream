@@ -14,4 +14,5 @@ public interface ContentRepository<T> {
 
     List<T> getAlbums();
 
+    List<T> getVideos();
 }

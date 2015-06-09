@@ -76,12 +76,12 @@ public class PagerFragment extends BaseFragment {
         mTabsStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                LogUtils.debugLog(LOG_TAG, "onPageScrolled");
+                LogUtils.debugLog(LOG_TAG, "onPageScrolled " + position);
             }
 
             @Override
             public void onPageSelected(int position) {
-                LogUtils.debugLog(LOG_TAG, "onPageSelected");
+                LogUtils.debugLog(LOG_TAG, "onPageSelected " + position);
             }
 
             @Override

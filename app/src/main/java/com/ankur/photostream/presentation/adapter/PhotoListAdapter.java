@@ -118,6 +118,8 @@ public class PhotoListAdapter extends BaseAdapter {
         public void bindViews(PhotoItem item) {
             if (item.mCoverPhoto != null && !item.mCoverPhoto.equals("")) {
                 mPhoto.setImageUrl(ApiConstants.getCoverPhotoUrl(item.mId), VolleyLib.getImageLoader());
+            } else if (item.mVideoPreviewPic != null && !item.mVideoPreviewPic.equals("")) {
+                mPhoto.setImageUrl(item.mVideoPreviewPic, VolleyLib.getImageLoader());
             } else {
                 mPhoto.setImageUrl(item.mImages.get(0).source, VolleyLib.getImageLoader());
             }

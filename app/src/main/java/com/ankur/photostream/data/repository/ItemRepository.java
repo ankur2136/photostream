@@ -21,4 +21,9 @@ public class ItemRepository implements ContentRepository<PhotoItem> {
     public List<PhotoItem> getAlbums() {
         return mCloud.getAlbums();
     }
+
+    @Override
+    public List<PhotoItem> getVideos() {
+        return mCloud.getVideos();
+    }
 }

@@ -51,4 +51,24 @@ public class RequestUtils extends ApiUtils {
         return (List<PhotoItem>) resultWrapper.getResult();
     }
 
+    public static List<PhotoItem> getVideos(Context context) {
+        String url = ApiConstants.getVideoUrl();
+        final ResultWrapper resultWrapper = new ResultWrapper();
+        makeSyncGetJsonRequest(new PhotosResponse(), context, url, 10000, new ApiResponseListener<PhotosResponse>() {
+            @Override
+            public void onResponse(PhotosResponse response) {
+                LogUtils.debugLog(LOG_TAG, "Results received");
+                resultWrapper.setResult(response.getResult());
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                LogUtils.errorLog(LOG_TAG, "Failed to fetch page. API returned: " + exception);
+            }
+
+        });
+        return (List<PhotoItem>) resultWrapper.getResult();
+    }
+
+
 }

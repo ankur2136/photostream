@@ -8,4 +8,6 @@ public interface ItemDataSource<T> {
     List<T> getPhotos();
 
     List<T> getAlbums();
+
+    List<T> getVideos();
 }

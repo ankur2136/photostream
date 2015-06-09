@@ -27,13 +27,13 @@ import com.ankur.photostream.utils.LogUtils;
 public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem>> implements
         CollectionView<PhotoItem>, PhotoListAdapter.OnItemClickListener {
 
-    private static final String            FRAGMENT_TAG    = PhotoListFragment.class.getName();
+    private static final String            FRAGMENT_TAG       = PhotoListFragment.class.getName();
 
-    private static final String            LOG_TAG         = "PHOTO_LIST_FRAGMENT";
+    private static final String            LOG_TAG            = "PHOTO_LIST_FRAGMENT";
 
-    private static final String            SCROLL_POSITION = "scroll_position";
+    private static final String            SCROLL_POSITION    = "scroll_position";
 
-    private int                            mScrollPosition = 0;
+    private int                            mScrollPosition    = 0;
 
     private PhotoListAdapter               mPhotoListAdapter;
 
@@ -45,29 +45,37 @@ public class PhotoListFragment extends PresenterFragment<ItemPresenter<PhotoItem
 
     private static String                  mQuery;
 
+    private String                         mFragmentTagSuffix = "";
+
     /**
      * Should not be called from outside this fragment.
      */
     public PhotoListFragment() {
     }
 
-    public static Bundle getPhotoItemBundle(String query) {
+    public static Bundle getItemBundle(String query) {
         Bundle bundle = new Bundle();
-        mQuery = query;
+        bundle.putString("query", query);
         return bundle;
     }
 
     public static PhotoListFragment newInstance(Bundle bundle) {
         PhotoListFragment fragment = new PhotoListFragment();
         if (bundle != null) {
+            mQuery = bundle.getString("query", "photo");
+            fragment.setFragmentTagSuffix(mQuery);
             fragment.setArguments(bundle);
         }
         return fragment;
     }
 
+    public void setFragmentTagSuffix(String fragmentTagSuffix) {
+        mFragmentTagSuffix = fragmentTagSuffix;
+    }
+
     @Override
     public String getFragmentTag() {
-        return FRAGMENT_TAG;
+        return FRAGMENT_TAG + mFragmentTagSuffix;
     }
 
     @Override

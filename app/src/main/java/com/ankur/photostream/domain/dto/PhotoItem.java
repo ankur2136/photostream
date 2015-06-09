@@ -16,6 +16,7 @@ public class PhotoItem implements Serializable, ParsingObject {
     public fromField    mFrom;
     public List<Images> mImages;
     public String       mCoverPhoto;
+    public String       mVideoPreviewPic;
 
     public class fromField {
         public String id;
@@ -55,6 +56,7 @@ public class PhotoItem implements Serializable, ParsingObject {
         }
 
         mCoverPhoto = obj.optString(ApiConstants.Photo.COVER_PHOTO);
+        mVideoPreviewPic = obj.optString(ApiConstants.Photo.VIDEO_PREVIEW);
         return this;
     }
 }
